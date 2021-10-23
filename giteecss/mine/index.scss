@@ -51,6 +51,13 @@ li {
           border-radius: 3px;
           text-decoration: none;
         }
+        .date {
+          position: absolute;
+          top: 20px;
+          width: 100px;
+          left: 128%;
+          color: #acb7c0;
+        }
         &::after {
           content: "";
           display: block;
@@ -62,6 +69,9 @@ li {
           border-right-color: #e9f0f5;
           border-bottom-color: #e9f0f5;
         }
+      }
+      .contentBox.bounce {
+        animation: bounce-inL 0.6s;
       }
 
       .iconBox {
@@ -104,6 +114,9 @@ li {
       }
       .contentBox {
         float: right;
+        .date {
+          left: -150px;
+        }
         &::after {
           content: "";
           display: block;
@@ -111,6 +124,9 @@ li {
           border-left-color: #e9f0f5;
           border-right-color: white;
         }
+      }
+      .contentBox.bounce {
+        animation: bounce-inR 0.6s;
       }
     }
     .timelineItem.last {
@@ -121,5 +137,33 @@ li {
     .timelineItem.none {
       visibility: hidden;
     }
+  }
+}
+
+@keyframes bounce-inL {
+  0% {
+    opacity: 0.5;
+    transform: translateX(-100px);
+  }
+  95% {
+    transform: translateX(15px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce-inR {
+  0% {
+    transform: translateX(100px);
+    opacity: 0.5;
+  }
+  95% {
+    transform: translateX(-15px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
   }
 }

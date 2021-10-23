@@ -15,10 +15,12 @@ $(function(){
       if(height > top){
         $(el).removeClass("none");
         $(el).addClass("last");
+        if(index) $(el).find(".contentBox").addClass("bounce");
         itemList.eq(index - 1).removeClass("last")
       }else{
         $(el).addClass("none");
         $(el).removeClass("last");
+        $(el).find(".contentBox").removeClass("bounce");
         itemList.eq(index - 1).addClass("last")
       }
     })
