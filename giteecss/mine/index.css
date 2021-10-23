@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #e9f0f5;
+}
+
+li {
+  list-style: none;
+}
+
+.upperTitle {
+  background-color: #303e49;
+  height: 300px;
+  color: white;
+  text-align: center;
+}
+
+.upperTitle h3 {
+  line-height: 300px;
+  font-size: 1.5em;
+}
+
+.outer {
+  width: 80%;
+  margin: auto;
+}
+
+.container {
+  padding: 40px;
+}
+
+.container .timeline {
+  padding-left: 20px;
+}
+
+.container .timeline .timelineItem {
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.container .timeline .timelineItem .contentBox {
+  width: 40%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+}
+
+.container .timeline .timelineItem .contentBox .title {
+  line-height: 1.5;
+}
+
+.container .timeline .timelineItem .contentBox .desc {
+  margin: 20px 5px 30px;
+}
+
+.container .timeline .timelineItem .contentBox .more {
+  padding: 8px 12px;
+  background-color: #acb7c0;
+  color: white;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.container .timeline .timelineItem .contentBox::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 30px;
+  right: -20px;
+  border: 10px solid white;
+  border-top-color: #e9f0f5;
+  border-right-color: #e9f0f5;
+  border-bottom-color: #e9f0f5;
+}
+
+.container .timeline .timelineItem .iconBox {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -38px;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 8px solid white;
+  background-color: #75ce66;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .timeline .timelineItem .iconBox.location {
+  background-color: #f0ca45;
+}
+
+.container .timeline .timelineItem .iconBox.movie {
+  background-color: #c03b44;
+}
+
+.container .timeline .timelineItem .line {
+  position: absolute;
+  top: 0;
+  width: 4px;
+  margin-left: -2px;
+  background-color: #d7e4ed;
+  left: 50%;
+  height: 100%;
+  z-index: -1;
+}
+
+.container .timeline .timelineItem:nth-child(even)::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container .timeline .timelineItem:nth-child(even) .contentBox {
+  float: right;
+}
+
+.container .timeline .timelineItem:nth-child(even) .contentBox::after {
+  content: "";
+  display: block;
+  right: 100%;
+  border-left-color: #e9f0f5;
+  border-right-color: white;
+}
+
+.container .timeline .timelineItem.last .line {
+  display: none;
+}
+
+.container .timeline .timelineItem.none {
+  visibility: hidden;
+}

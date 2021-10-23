@@ -1,0 +1,37 @@
+{
+  "id": "2879516",
+  "name": "timelinePractice",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "23880813",
+      "name": "科技团队,师资队伍",
+      "font_class": "kejituandui",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "23880815",
+      "name": "通知公告",
+      "font_class": "tongzhigonggao",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "23880818",
+      "name": "新闻动态",
+      "font_class": "xinwendongtai",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "23880821",
+      "name": "业务流程",
+      "font_class": "yewuliucheng",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}

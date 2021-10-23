@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.min.css">
+    <link rel="stylesheet" href="./font.css">
+</head>
+<body>
+    <div class="demo-block demo-zh-CN demo-timeline">
+        <div class="source">
+            <div>
+                <div class="block">
+                    <div class="radio">
+                        排序：
+                        <div role="radiogroup" class="el-radio-group">
+                            <label role="radio" aria-checked="true" tabindex="0" class="el-radio is-checked">
+                                <span class="el-radio__input is-checked">
+                                    <span class="el-radio__inner"></span>
+                                    <input type="radio" aria-hidden="true" tabindex="-1" autocomplete="off" class="el-radio__original" value="true">
+                                </span>
+                                <span class="el-radio__label">倒序<!----></span>
+                            </label> 
+                            <label role="radio" tabindex="-1" class="el-radio">
+                                <span class="el-radio__input">
+                                    <span class="el-radio__inner"></span>
+                                    <input type="radio" aria-hidden="true" tabindex="-1" autocomplete="off" class="el-radio__original" value="false">
+                                </span>
+                                <span class="el-radio__label">正序<!----></span>
+                            </label>
+                        </div>
+                    </div> 
+                    <ul class="el-timeline is-reverse">
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--"><!----></div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    创建成功
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-11
+                                </div>
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--"><!----></div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    通过审核
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-13
+                                </div>
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--"><!----></div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    活动按期开始
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-15
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>           
+            </div>
+        </div>
+        <div style="height: 1px; background-color: black; margin: 20px;"></div>
+        <div class="source">
+            <div>
+                <div class="block">
+                    <ul class="el-timeline">
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--large el-timeline-item__node--primary">
+                                <i class="el-timeline-item__icon el-icon-more"></i>
+                            </div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    支持使用图标
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-12 20:46
+                                </div>
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--" style="background-color: rgb(11, 189, 135);"><!----></div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    支持自定义颜色
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-03 20:46
+                                </div>
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--large el-timeline-item__node--"><!----></div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    支持自定义尺寸
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-03 20:46
+                                </div>
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail"></div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--"><!----></div><!---->
+                            <div class="el-timeline-item__wrapper"><!---->
+                                <div class="el-timeline-item__content">
+                                    默认样式的节点
+                                </div>
+                                <div class="el-timeline-item__timestamp is-bottom">
+                                    2018-04-03 20:46
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="height: 1px; background-color: black; margin: 20px;"></div>
+        <div class="source">
+            <div>
+                <div class="block">
+                    <ul class="el-timeline">
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail">
+                            </div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--">
+                                <!---->
+                            </div>
+                            <!---->
+                            <div class="el-timeline-item__wrapper">
+                                <div class="el-timeline-item__timestamp is-top">
+                                    2018/4/12
+                                </div>
+                                <div class="el-timeline-item__content">
+                                    <div class="el-card is-always-shadow">
+                                        <!---->
+                                        <div class="el-card__body">
+                                            <h4>
+                                                更新 Github 模板
+                                            </h4>
+                                            <p>
+                                                王小虎 提交于 2018/4/12 20:46
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail">
+                            </div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--">
+                                <!---->
+                            </div>
+                            <!---->
+                            <div class="el-timeline-item__wrapper">
+                                <div class="el-timeline-item__timestamp is-top">
+                                    2018/4/3
+                                </div>
+                                <div class="el-timeline-item__content">
+                                    <div class="el-card is-always-shadow">
+                                        <!---->
+                                        <div class="el-card__body">
+                                            <h4>
+                                                更新 Github 模板
+                                            </h4>
+                                            <p>
+                                                王小虎 提交于 2018/4/3 20:46
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </li>
+                        <li class="el-timeline-item">
+                            <div class="el-timeline-item__tail">
+                            </div>
+                            <div class="el-timeline-item__node el-timeline-item__node--normal el-timeline-item__node--">
+                                <!---->
+                            </div>
+                            <!---->
+                            <div class="el-timeline-item__wrapper">
+                                <div class="el-timeline-item__timestamp is-top">
+                                    2018/4/2
+                                </div>
+                                <div class="el-timeline-item__content">
+                                    <div class="el-card is-always-shadow">
+                                        <!---->
+                                        <div class="el-card__body">
+                                            <h4>
+                                                更新 Github 模板
+                                            </h4>
+                                            <p>
+                                                王小虎 提交于 2018/4/2 20:46
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

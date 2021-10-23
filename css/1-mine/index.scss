@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+$customgray: #ddd;
+$defaultFontsize: 14px;
+
+#reverse {
+  margin-left: 60px;
+  &:checked {
+    & + input + label + .timeline {
+      display: block;
+    }
+    & + input + label + .timeline + .timeline {
+      display: none;
+    }
+  }
+}
+
+#positive {
+  &:checked {
+    & + label + .timeline {
+      display: none;
+    }
+    & + label + .timeline + .timeline {
+      display: block;
+    }
+  }
+}
+
+.container {
+  .timeline {
+    font-size: $defaultFontsize;
+    margin: 30px;
+    .timelineSection {
+      display: flex;
+      margin-left: 30px;
+      position: relative;
+      .lineSpot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 15px;
+        .spot {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: $customgray;
+        }
+        .line {
+          width: 2px;
+          height: 50px;
+          background-color: $customgray;
+        }
+      }
+      .contentContainer {
+        margin-left: 15px;
+        .content {
+          line-height: 14px;
+          margin: 0 0 5px 5px;
+        }
+        .timeStamp {
+          color: #999;
+        }
+      }
+    }
+    .timelineSection.last {
+      .line {
+        display: none;
+      }
+    }
+  }
+  .timeline.l {
+    display: none;
+  }
+  .divisionSection {
+    margin: 20px;
+    height: 1px;
+    background-color: $customgray;
+  }
+  .timeline.customNodeStyle {
+    .timelineSection:first-of-type {
+      .lineSpot {
+        .spot {
+          background-color: rgb(0, 140, 255);
+          color: white;
+          text-align: center;
+          width: 18px;
+          height: 18px;
+          .iconfont {
+            font-size: 12px;
+            line-height: 18px;
+            vertical-align: text-top;
+          }
+        }
+      }
+    }
+    .timelineSection:nth-of-type(2) {
+      .spot {
+        background-color: rgb(86, 186, 39);
+      }
+    }
+    .timelineSection:nth-of-type(3) {
+      .spot {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  .timeline.customTimeStamp {
+    .timelineSection {
+      .contentContainer {
+        position: relative;
+        .content {
+          position: absolute;
+          width: 800px;
+          border-radius: 5px;
+          top: 20px;
+          background-color: white;
+          padding: 5px;
+          line-height: 24px;
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+          .title {
+            margin: 10px 0;
+            padding: 3px 8px;
+          }
+          .desc {
+            margin: 5px 0;
+            padding: 3px 8px;
+            color: #888;
+          }
+        }
+        .timeStamp {
+          line-height: 14px;
+          margin: 0 0 5px 5px;
+        }
+      }
+      .lineSpot {
+        .line {
+          height: 110px;
+        }
+      }
+    }
+    .timelineSection.last {
+      height: 105px;
+    }
+  }
+}

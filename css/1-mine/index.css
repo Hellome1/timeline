@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#reverse {
+  margin-left: 60px;
+}
+
+#reverse:checked + input + label + .timeline {
+  display: block;
+}
+
+#reverse:checked + input + label + .timeline + .timeline {
+  display: none;
+}
+
+#positive:checked + label + .timeline {
+  display: none;
+}
+
+#positive:checked + label + .timeline + .timeline {
+  display: block;
+}
+
+.container .timeline {
+  font-size: 14px;
+  margin: 30px;
+}
+
+.container .timeline .timelineSection {
+  display: flex;
+  margin-left: 30px;
+  position: relative;
+}
+
+.container .timeline .timelineSection .lineSpot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15px;
+}
+
+.container .timeline .timelineSection .lineSpot .spot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+.container .timeline .timelineSection .lineSpot .line {
+  width: 2px;
+  height: 50px;
+  background-color: #ddd;
+}
+
+.container .timeline .timelineSection .contentContainer {
+  margin-left: 15px;
+}
+
+.container .timeline .timelineSection .contentContainer .content {
+  line-height: 14px;
+  margin: 0 0 5px 5px;
+}
+
+.container .timeline .timelineSection .contentContainer .timeStamp {
+  color: #999;
+}
+
+.container .timeline .timelineSection.last .line {
+  display: none;
+}
+
+.container .timeline.l {
+  display: none;
+}
+
+.container .divisionSection {
+  margin: 20px;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.container .timeline.customNodeStyle .timelineSection:first-of-type .lineSpot .spot {
+  background-color: #008cff;
+  color: white;
+  text-align: center;
+  width: 18px;
+  height: 18px;
+}
+
+.container .timeline.customNodeStyle .timelineSection:first-of-type .lineSpot .spot .iconfont {
+  font-size: 12px;
+  line-height: 18px;
+  vertical-align: text-top;
+}
+
+.container .timeline.customNodeStyle .timelineSection:nth-of-type(2) .spot {
+  background-color: #56ba27;
+}
+
+.container .timeline.customNodeStyle .timelineSection:nth-of-type(3) .spot {
+  width: 20px;
+  height: 20px;
+}
+
+.container .timeline.customTimeStamp .timelineSection .contentContainer {
+  position: relative;
+}
+
+.container .timeline.customTimeStamp .timelineSection .contentContainer .content {
+  position: absolute;
+  width: 800px;
+  border-radius: 5px;
+  top: 20px;
+  background-color: white;
+  padding: 5px;
+  line-height: 24px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.container .timeline.customTimeStamp .timelineSection .contentContainer .content .title {
+  margin: 10px 0;
+  padding: 3px 8px;
+}
+
+.container .timeline.customTimeStamp .timelineSection .contentContainer .content .desc {
+  margin: 5px 0;
+  padding: 3px 8px;
+  color: #888;
+}
+
+.container .timeline.customTimeStamp .timelineSection .contentContainer .timeStamp {
+  line-height: 14px;
+  margin: 0 0 5px 5px;
+}
+
+.container .timeline.customTimeStamp .timelineSection .lineSpot .line {
+  height: 110px;
+}
+
+.container .timeline.customTimeStamp .timelineSection.last {
+  height: 105px;
+}
