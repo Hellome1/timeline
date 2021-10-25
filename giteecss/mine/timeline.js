@@ -7,7 +7,6 @@ function Timeline(obj){
 }
 
 Timeline.prototype = {
-  value: null,
   createUl(params){
     let UL = this.createEle("ul.timeline");
     let _this = this;
