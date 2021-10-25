@@ -44,7 +44,7 @@ $(function(){
     ]
   }
   let UL = new Timeline(params).value;
-  document.getElementsByClassName("container")[0].appendChild(UL);
+  $(".container").append(UL);
 
   let itemList = $(".timelineItem");
   let first = itemList.eq(0);
