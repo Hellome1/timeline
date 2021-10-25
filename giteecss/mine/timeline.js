@@ -2,14 +2,11 @@
  * @description 传入参数返回timeline节点
  * @param {object} obj 配置参数
  */
-function timeline(obj){
-  if (obj && obj.activities) {
-    this.value = this.init(obj);
-    return this.value;
-  }
+function Timeline(obj){
+  if (obj && obj.activities) this.value = this.init(obj);
 }
 
-timeline.prototype = {
+Timeline.prototype = {
   value: null,
   createUl(params){
     let UL = this.createEle("ul.timeline");

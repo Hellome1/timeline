@@ -43,7 +43,7 @@ $(function(){
       }
     ]
   }
-  let UL = new timeline(params);
+  let UL = new Timeline(params).value;
   document.getElementsByClassName("container")[0].appendChild(UL);
 
   let itemList = $(".timelineItem");
