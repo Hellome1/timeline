@@ -4,7 +4,7 @@
  */
 function timeline(obj){
   if (obj && obj.activities) {
-    this.init(obj);
+    this.value = this.init(obj);
     return this.value;
   }
 }
@@ -77,6 +77,6 @@ timeline.prototype = {
     return node;
   },
   init(obj){
-    this.value = this.createUl(obj);
+    return this.createUl(obj);
   }
 }
