@@ -1,4 +1,5 @@
 /* 
+    构造函数改造
     传入参数生成timeline时间轴节点
 
     option = {
@@ -31,136 +32,144 @@
  * @param {object} data 
  * @param {boolean} insertBefore 
  */
-function timeline(data){
-  let { reverse, activities, contentCard, hover } = data;
-  if (!activities) {
-    console.error("渲染失败，请确认是否传入activities。");
-  }
-  
-  let ulDom = createEle("ul", { className: "timeline"});
-  
-  if(reverse){
-    for(let i = activities.length - 1; i >= 0; i--){
-      activities[i].last = false;
-      if(i == 0){
-        activities[i].last = true;
-      }
-
-      let li = contentCard ? createItem(activities[i], contentCard) : createItem(activities[i]);
-
-      if(hover && hover.value){
-        let contentContainer = li.getElementsByClassName("contentContainer")[0]
-        hoverColor(contentContainer, hover.color);
-      }
-
-      ulDom.appendChild(li);
-    }
-  }else{
-    for(let i = 0; i < activities.length; i++){
-      activities[i].last = false;
-      if(i == activities.length - 1){
-        activities[i].last = true;
-      }
-
-      let li = contentCard ? createItem(activities[i], contentCard) : createItem(activities[i]);
-
-      if(hover && hover.value){
-        let contentContainer = li.getElementsByClassName("contentContainer")[0]
-        hoverColor(contentContainer, hover.color);
-      }
-
-      ulDom.appendChild(li);
-    }
-  }
-  
-  return ulDom;
+function Timeline(data){
+  if (!(this instanceof Timeline)) throw new Error("Please use \"new Timeline()\" !");
+  if (data) this.value = this.init(data);
 }
 
-/**
- * @description 创建时间轴的基本项
- * @param {object} itemData 
- * @param {boolean} cardJudge 
- * @returns 
- */
-function createItem(itemData, cardJudge = false){
-  let { content, timestamp, size, type, icon, color, last } = itemData;
-  let lastStr = last ? " last" : "";
-  let cardStr = cardJudge ? " card" : "";
-  let liDom = createEle("li", { className: "timelineSection" + lastStr + cardStr});
-  let div1 = createEle("div", { className: "lineSpot"});
-  let sizeClass = size ? " " + size : "";
-  let typeClass = type ? " " + type : "";
-  let divSpot = createEle("div", { 
-        className: "spot" + sizeClass + typeClass,
-        style: {
-          backgroundColor: color
+Timeline.prototype = {
+  createUl(data){
+    let { reverse, activities, contentCard, hover } = data;
+    if (!activities) {
+      console.error("渲染失败，请确认是否传入activities。");
+    }
+    
+    let ulDom = this.createEle("ul", { className: "timeline"});
+    
+    if(reverse){
+      for(let i = activities.length - 1; i >= 0; i--){
+        activities[i].last = false;
+        if(i == 0){
+          activities[i].last = true;
         }
-      });
-  let divLine = createEle("div", { className: "line"});
-  let div2 = createEle("div", { className: "contentContainer"});
-  let divContent = createEle("div", { className: "content"});
-  let divTimeStamp = createEle("div", { className: "timeStamp"});
 
-  if(cardJudge){
-    let hTitle = createEle("h4", { className: "title"});
-    hTitle.innerHTML = content.title;
-    let pDesc = createEle("p", { className: "desc"});
-    pDesc.innerHTML = content.desc;
-    divContent.appendChild(hTitle);
-    divContent.appendChild(pDesc);
-    div2.appendChild(divTimeStamp);
-    div2.appendChild(divContent);
-  }else{
-    divContent.innerHTML = content;
-    div2.appendChild(divContent);
-    div2.appendChild(divTimeStamp);
-  }
+        let li = contentCard ? this.createItem(activities[i], contentCard) : this.createItem(activities[i]);
 
-  divTimeStamp.innerHTML = timestamp;
-  
-  if(icon){
-    let iconName = "iconfont " + icon;
-    let iDom = createEle("i", { className: iconName});
-    divSpot.appendChild(iDom);
-  }
-  div1.appendChild(divSpot);
-  div1.appendChild(divLine);
-  liDom.appendChild(div1);
-  liDom.appendChild(div2);
+        if(hover && hover.value){
+          let contentContainer = li.getElementsByClassName("contentContainer")[0]
+          this.hoverColor(contentContainer, hover.color);
+        }
 
-  return liDom;
-}
+        ulDom.appendChild(li);
+      }
+    }else{
+      for(let i = 0; i < activities.length; i++){
+        activities[i].last = false;
+        if(i == activities.length - 1){
+          activities[i].last = true;
+        }
 
-/**
- * @description 为传入dom添加hover效果，可选颜色
- * @param {HTMLElement} dom 
- * @param {string} color 
- */
-function hoverColor(dom, color = "rgba(150, 200, 200, 0.1)"){
-  dom.onmouseenter = function(){
-    this.style.backgroundColor = color;
-  }
-  dom.onmouseleave = function(){
-    this.style.backgroundColor = "";
-  }
-}
+        let li = contentCard ? this.createItem(activities[i], contentCard) : this.createItem(activities[i]);
 
-/**
- * @description 传入节点名称和属性对象创建节点
- * @param {string} domName 
- * @param {object} attrobj 
- * @returns 
- */
-function createEle(domName, attrobj = {}){
-  let { className, style } = attrobj;
-  let dom = document.createElement(domName);
-  if (className){
-    dom.className = className;
-  }
-  if (style){
-    for( key in style ){
-      dom.style[key] = style[key];
+        if(hover && hover.value){
+          let contentContainer = li.getElementsByClassName("contentContainer")[0]
+          this.hoverColor(contentContainer, hover.color);
+        }
+
+        ulDom.appendChild(li);
+      }
+    }
+    
+    return ulDom;
+  },
+  /**
+   * @description 创建时间轴的基本项
+   * @param {object} itemData 
+   * @param {boolean} cardJudge 
+   * @returns 
+   */
+  createItem(itemData, cardJudge = false){
+    let { content, timestamp, size, type, icon, color, last } = itemData;
+    let lastStr = last ? " last" : "";
+    let cardStr = cardJudge ? " card" : "";
+    let liDom = this.createEle("li", { className: "timelineSection" + lastStr + cardStr});
+    let div1 = this.createEle("div", { className: "lineSpot"});
+    let sizeClass = size ? " " + size : "";
+    let typeClass = type ? " " + type : "";
+    let divSpot = this.createEle("div", { 
+          className: "spot" + sizeClass + typeClass,
+          style: {
+            backgroundColor: color
+          }
+        });
+    let divLine = this.createEle("div", { className: "line"});
+    let div2 = this.createEle("div", { className: "contentContainer"});
+    let divContent = this.createEle("div", { className: "content"});
+    let divTimeStamp = this.createEle("div", { className: "timeStamp"});
+
+    if(cardJudge){
+      let hTitle = this.createEle("h4", { className: "title"});
+      hTitle.innerHTML = content.title;
+      let pDesc = this.createEle("p", { className: "desc"});
+      pDesc.innerHTML = content.desc;
+      divContent.appendChild(hTitle);
+      divContent.appendChild(pDesc);
+      div2.appendChild(divTimeStamp);
+      div2.appendChild(divContent);
+    }else{
+      divContent.innerHTML = content;
+      div2.appendChild(divContent);
+      div2.appendChild(divTimeStamp);
+    }
+
+    divTimeStamp.innerHTML = timestamp;
+    
+    if(icon){
+      let iconName = "iconfont " + icon;
+      let iDom = this.createEle("i", { className: iconName});
+      divSpot.appendChild(iDom);
+    }
+    div1.appendChild(divSpot);
+    div1.appendChild(divLine);
+    liDom.appendChild(div1);
+    liDom.appendChild(div2);
+
+    return liDom;
+  },
+  /**
+   * @description 为传入dom添加hover效果，可选颜色
+   * @param {HTMLElement} dom 
+   * @param {string} color 
+   */
+  hoverColor(dom, color = "rgba(150, 200, 200, 0.1)"){
+    dom.onmouseenter = function(){
+      this.style.backgroundColor = color;
+    }
+    dom.onmouseleave = function(){
+      this.style.backgroundColor = "";
     }
   }
-  return dom;
+  ,
+  /**
+   * @description 传入节点名称和属性对象创建节点
+   * @param {string} domName 
+   * @param {object} attrobj 
+   * @returns 
+   */
+  createEle(domName, attrobj = {}){
+    let { className, style } = attrobj;
+    let dom = document.createElement(domName);
+    if (className){
+      dom.className = className;
+    }
+    if (style){
+      for( key in style ){
+        dom.style[key] = style[key];
+      }
+    }
+    return dom;
+  },
+  init(data){
+    return this.createUl(data);
+  }
 }

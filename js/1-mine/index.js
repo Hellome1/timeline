@@ -64,100 +64,54 @@ let option3 = {
   }
 }
 
-/* 使用append方法和outerHTML实现 */
+let task = {
+  dom: document.getElementsByClassName("container")[0],
+  value: [option1, option2, option3],
+  render: function(){
+    let _this = this;
+    this.value.forEach(function(option, index, arr){
+      _this.dom.appendChild(new Timeline(option).value);
+      if(index != arr.length){
+        _this.divideLine();
+      }
+    })
+    this.addClick();
+  },
+  /**
+   * @description 划线
+   */
+  divideLine(){
+    let divDom = document.createElement("div");
+    divDom.className = "divisionSection";
+    this.dom.appendChild(divDom);
+  },
+  /**
+   * @description 给逆序input节点添加checked，增加正序逆序点击事件
+   */
+  addClick(){
+    let reverse = document.getElementById("reverse");
+    let positive = document.getElementById("positive");
+    let ulS = document.getElementsByClassName("timeline");
+    let _this = this;
 
-// function load(data){
-//   let { reverse, activities } = data;
-//   if (!activities) {
-//     console.warn("渲染失败，请确认是否传入activities。");
-//   }
-  
-//   let ulStart = `<ul class="timeline">`;
-//   let ulEnd = `</ul>`;
-//   if(reverse){
-//     for(let i = activities.length - 1; i >= 0; i--){
-//       let { content, timestamp, size, type, icon } = activities[i];
-//       let iconhtml = icon ? `<i class="iconfont ${icon}"></i>` : "";
-//       let last = i == 0 ? "last" : "";
-//       let li = `<li class="timelineSection ${last}">
-//           <div class="lineSpot">
-//               <div class="spot ${size | ""} ${type | ""}">${iconhtml}</div>
-//               <div class="line"></div>
-//           </div>
-//           <div class="contentContainer">
-//               <div class="content">${content}</div>
-//               <div class="timeStamp">${timestamp}</div>
-//           </div>
-//       </li>`;
-//       ulStart += li;
-//     }
-//   }else{
-//     for(let i = 0; i < activities.length; i++){
-//       let { content, timestamp, size, type, icon, color } = activities[i];
-//       let iconhtml = icon ? `<i class="iconfont ${icon}"></i>` : "";
-//       let last = i == activities.length - 1 ? "last" : "";
-//       let colorStyle = color ? "background-color: " + color : "";
-//       let li = `<li class="timelineSection ${last}">
-//           <div class="lineSpot">
-//               <div class="spot ${size || ""} ${type || ""}" style="${colorStyle}">${iconhtml}</div>
-//               <div class="line"></div>
-//           </div>
-//           <div class="contentContainer">
-//               <div class="content">${content}</div>
-//               <div class="timeStamp">${timestamp}</div>
-//           </div>
-//       </li>`;
-//       ulStart += li;
-//     }
-//   }
-//   ulStart += ulEnd;
+    reverse.checked = true;
 
-//   let ulDom = document.createElement("ul");
-//   containerDom.append(ulDom);
-//   ulDom.outerHTML = ulStart;
-// }
+    reverse.onclick = function(){
+      if(option1.reverse) return;
+      option1.reverse = !option1.reverse;
+      _this.dom.removeChild(ulS[0]);
+      let firstDom = _this.dom.children[0];
+      _this.dom.insertBefore(new Timeline(_this.value[0]).value, firstDom);
+    }
 
-
-/**
- * @description 给逆序input节点添加checked，增加正序逆序点击事件
- */
- function addClick(){
-  let reverse = document.getElementById("reverse");
-  let positive = document.getElementById("positive");
-  let ulS = document.getElementsByClassName("timeline");
-
-  reverse.checked = true;
-
-  reverse.onclick = function(){
-    if(option1.reverse) return;
-    option1.reverse = !option1.reverse;
-    containerDom.removeChild(ulS[0]);
-    let firstDom = containerDom.children[0];
-    containerDom.insertBefore(timeline(option1), firstDom);
-  }
-
-  positive.onclick = function(){
-    if(!option1.reverse) return;
-    option1.reverse = !option1.reverse;
-    containerDom.removeChild(ulS[0]);
-    let firstDom = containerDom.children[0];
-    containerDom.insertBefore(timeline(option1), firstDom);
+    positive.onclick = function(){
+      if(!option1.reverse) return;
+      option1.reverse = !option1.reverse;
+      _this.dom.removeChild(ulS[0]);
+      let firstDom = _this.dom.children[0];
+      _this.dom.insertBefore(new Timeline(_this.value[0]).value, firstDom);
+    }
   }
 }
 
-/**
- * @description 划线
- */
- function divideLine(){
-  let divDom = document.createElement("div");
-  divDom.className = "divisionSection";
-  containerDom.appendChild(divDom);
-}
-
-let containerDom = document.getElementsByClassName("container")[0];
-containerDom.appendChild(timeline(option1));
-divideLine();
-containerDom.appendChild(timeline(option2));
-divideLine();
-containerDom.appendChild(timeline(option3));
-addClick();
+task.render();
