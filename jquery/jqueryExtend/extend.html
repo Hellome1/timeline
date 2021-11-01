@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <script>
+        let obj1 = {
+            ccy: 18
+        },
+        obj2 = {
+            ccy: 223,
+            ccy1: 19,
+            ccy2: {
+                age: 20
+            }
+        }
+
+        let res = $.extend(obj1, obj2); // res === obj1, 遍历obj2中的键值对浅拷贝给obj1（ccy2的值为一个对象，直接将对象的访问地址作为obj1中的ccy2的值）
+        console.log(obj1, obj2, res);
+    </script>
+</body>
+</html>
