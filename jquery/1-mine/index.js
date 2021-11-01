@@ -1,4 +1,5 @@
 /* 
+    构造函数改造
     传入参数生成timeline时间轴节点
 
     option = {
@@ -87,114 +88,102 @@ let option3 = {
   }]
 }
 
+let task = {
+  value: [option1, option2, option3],
+  render() {
+    this.value.forEach((item, index) => {
+      $(".container").append($.tl(item));
+      if (index != this.value.length -1) $("<div></div>").addClass("divisionSection").appendTo(".container");
+    })
+    this.addClick();
+  },
+  /**
+   * @description 使用jquery添加点击事件
+   */
+  addClick() {
+    $("#reverse").attr("checked", true).on("click", function(){
+      if (option1.reverse) return;
+      option1.reverse = !option1.reverse;
+      $(".timeline:first-of-type").remove();
+      $(".container").prepend($.tl(option1));
+    })
   
+    $("#positive").on("click", function(){
+      if (!option1.reverse) return;
+      option1.reverse = !option1.reverse;
+      // console.log(option1.reverse);
+      $(".timeline:first-of-type").remove();
+      $(".container").prepend($.tl(option1));
+    })
+  }
+}
+
 $(function(){
   console.log("JQuery is ready!")
 
-  $(".container").append($timeline(option1));
-  $("<div></div>").addClass("divisionSection").appendTo(".container");
-  $(".container").append($timeline(option2));
-  $("<div></div>").addClass("divisionSection").appendTo(".container");
-  $(".container").append($timeline(option3));
-  $addClick();
+  task.render();
 })
 
-
-/**
- * @description 用jquery实现，传入参数返回相应时间轴节点
- * @param {object} data 
- * @param {boolean} ret
- */
-function $timeline(data){
-  let { reverse, activities, contentCard, hover } = data;
-  if (!activities) {
-    console.error("渲染失败，请确认是否传入activities。");
-  }
-  
-  let ulDom = $(`<ul class="timeline"></ul>`);
-  if(reverse){
-    for(let i = activities.length - 1; i >= 0; i--){
-      let { content, timestamp, size, type, icon } = activities[i];
-      let iconhtml = icon ? `<i class="iconfont ${icon}"></i>` : "";
-      let last = i == 0 ? "last" : "";
-      let li = `<li class="timelineSection ${last}">
-          <div class="lineSpot">
-              <div class="spot ${size | ""} ${type | ""}">${iconhtml}</div>
-              <div class="line"></div>
-          </div>
-          <div class="contentContainer">
-              <div class="content">${content}</div>
-              <div class="timeStamp">${timestamp}</div>
-          </div>
-      </li>`;
-
-      let liDom = $(li);
-      if(hover.value && hover.color){
-        liDom.hover(function(){
-          $(this).css("backgroundColor", hover.color);
-        },function(){
-          $(this).css("backgroundColor", "");
-        })
-      }
-
-      ulDom.append(liDom);
+$.extend({
+  /**
+   * @description 用jquery实现，传入参数返回相应时间轴节点
+   * @param {object} data 
+   */
+  tl(data) {
+    function Tl(dt){
+      if (typeof dt === "object") this.value = this.init(dt);
     }
-  }else{
-    for(let i = 0; i < activities.length; i++){
-      let { content, timestamp, size, type, icon, color } = activities[i];
-      content = contentCard ? 
-      `
-        <h3 class="title">${content.title}</h3>
-        <p class="desc">${content.desc}</p>` : content;
-      let contentSection = contentCard ? 
-      `<div class="timeStamp">${timestamp}</div>
-      <div class="content">${content}</div>` :
-      `<div class="content">${content}</div>
-      <div class="timeStamp">${timestamp}</div>`;
-      let iconhtml = icon ? `<i class="iconfont ${icon}"></i>` : "";
-      let last = i == activities.length - 1 ? "last" : "";
-      let colorStyle = color ? "background-color: " + color : "";
-      let li = `<li class="timelineSection ${last} ${contentCard ? " card" : ""}">
-          <div class="lineSpot">
-              <div class="spot ${size || ""} ${type || ""}" style="${colorStyle}">${iconhtml}</div>
-              <div class="line"></div>
-          </div>
-          <div class="contentContainer">
-            ${contentSection}
-          </div>
-      </li>`;
 
-      let liDom = $(li);
-      if(hover && hover.value && hover.color){
-        liDom.hover(function(){
-          $(this).css("backgroundColor", hover.color);
-        },function(){
-          $(this).css("backgroundColor", "");
-        })
+    Tl.prototype = {
+      init() {
+        let { reverse, activities, contentCard, hover } = data;
+        if (!activities) {
+          console.error("渲染失败，请确认是否传入activities。");
+        }
+        
+        let ulDom = $(`<ul class="timeline"></ul>`);
+        let actArr = activities.slice();
+        actArr = reverse ? actArr.reverse() : actArr ;
+        for(let i = 0; i < actArr.length; i++){
+          let { content, timestamp, size, type, icon, color } = actArr[i];
+          content = contentCard ? 
+          `
+            <h3 class="title">${content.title}</h3>
+            <p class="desc">${content.desc}</p>` : content;
+          let contentSection = contentCard ? 
+          `<div class="timeStamp">${timestamp}</div>
+          <div class="content">${content}</div>` :
+          `<div class="content">${content}</div>
+          <div class="timeStamp">${timestamp}</div>`;
+          let iconhtml = icon ? `<i class="iconfont ${icon}"></i>` : "";
+          let last = i == actArr.length - 1 ? "last" : "";
+          let colorStyle = color ? "background-color: " + color : "";
+          let li = `<li class="timelineSection ${last} ${contentCard ? " card" : ""}">
+              <div class="lineSpot">
+                  <div class="spot ${size || ""} ${type || ""}" style="${colorStyle}">${iconhtml}</div>
+                  <div class="line"></div>
+              </div>
+              <div class="contentContainer">
+                ${contentSection}
+              </div>
+          </li>`;
+
+          let liDom = $(li);
+          if(hover && hover.value && hover.color){
+            liDom.hover(function(){
+              $(this).css("backgroundColor", hover.color);
+            },function(){
+              $(this).css("backgroundColor", "");
+            })
+          }
+
+          ulDom.append(liDom);
+        }
+
+        return ulDom;
       }
-
-      ulDom.append(liDom);
     }
+
+    return new Tl(data).value;
   }
-
-  return ulDom;
-}
-
-/**
- * @description 使用jquery添加点击事件
- */
- function $addClick(){
-  $("#reverse").attr("checked", true).on("click", function(){
-    if (option1.reverse) return;
-    option1.reverse = !option1.reverse;
-    $(".timeline:first-of-type").remove();
-    $(".container").prepend($timeline(option1));
-  })
-
-  $("#positive").on("click", function(){
-    if (!option1.reverse) return;
-    option1.reverse = !option1.reverse;
-    $(".timeline:first-of-type").remove();
-    $(".container").prepend($timeline(option1));
-  })
-}
+})
