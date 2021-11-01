@@ -9,7 +9,7 @@
             {
                 content: , // 必选，内容，一般为字符串，当contentCard为true时 content格式为 { title:  // 标题 , desc:  // 描述 }
                 timestamp:  ,// 必选，时间戳
-                size:  ,// 可选，时间轴轴线节点的大小，例如 "12px"
+                size:  ,// 可选，时间轴轴线节点的大小，例如 "large"
                 type:  ,// 可选，时间轴轴线节点的主题样式，目前只有"primary"
                 icon:  ,// 可选，时间轴轴线节点是否加入图标，默认使用 iconfont 图标 class 方法，传入 "iconfont xxx" xxx 部分，例如 "icon-xinwendongtai"
                 color:  // 可选，时间轴轴线节点的颜色

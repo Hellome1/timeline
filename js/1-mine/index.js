@@ -69,7 +69,7 @@ let task = {
   value: [option1, option2, option3],
   render: function(){
     let _this = this;
-    this.value.forEach(function(option, index, arr){
+    this.value.forEach(function(option, index, arr){ // 使用箭头函数则不需要使用_this
       _this.dom.appendChild(new Timeline(option).value);
       if(index != arr.length){
         _this.divideLine();
